@@ -1,2 +1,2 @@
 # testfirst
-first ruby project
+first ruby project that is required by the site
