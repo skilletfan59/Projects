@@ -89,18 +89,20 @@ if input == "add" || input == "subtract" || input == "power"
 elsif input == "multiply" || input == "sum"
 	puts
 	puts "Enter as many numbers as you want to separately
-	then enter '0' when you are finished."
-	while b != nil
-		until b.is_a?(Fixnum) do
-			puts
-			print "Please enter another number: "
-			b = Integer(gets) rescue nil
-		end
-		if b == 0
-			b = nil
+	then enter 'done' when you are finished."
+	while b != "done"
+		puts
+		print "Please enter a number: "
+		b = gets.chomp
+		if b == "done"
+		elsif
+			begin 
+				Integer(b)
+			numbers.push Integer(b)
+			rescue ArgumentError
+			end	
 		else
-		numbers.push b
-		b = "nothing"
+			puts "That's not a number!"
 		end
 	end
 	if input == "multiply"
