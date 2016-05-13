@@ -43,16 +43,19 @@
 	end
 puts
 puts "This program is a calculator emulator. Your options for
-functions are ADD - to add two numbers, SUBTRACT - to subtract
+functions are: ADD - to add two numbers, SUBTRACT - to subtract
 the first number from the second, SUM - to add multiple numbers,
 MULTIPLY - to multiply any amount of numbers together, DIVIDE - 
 to divide the first number by the second number, POWER - to 
 multiply the first number by the power of the second number,
 FACTORIAL - all the numbers between that one and 1 multiplied"
-inputs = ["add", "subtract", "sum", "multiply", "divide", "power", "factorial"]
+inputs = ["add", "subtract", "sum", "multiply", "divide", "power", "factorial", "exit"]
+input = nil
+while input != "exit"
 input = "nothing"
-until inputs.include?("#{input.downcase}") == true do
+until inputs.include?("#{input}") == true do
 	puts
+	puts "Options are: add, subtract, sum, multiply, divide, power, factorial, exit"
 	print "What function would you like to do? "
 	input = gets.chomp.downcase
 end
@@ -62,7 +65,8 @@ y = nil
 n = nil
 b = "nothing"
 result = "The answer is: "
-if input == "add" || input == "subtract" || input == "power"
+if input == "exit"
+elsif input == "add" || input == "subtract" || input == "power"
 	until x.is_a?(Fixnum) do
 		puts
 		print "Please enter the first number: "
@@ -123,4 +127,5 @@ else input == "factorial"
 	puts
 	print result
 	puts factorial(n)
+end
 end
