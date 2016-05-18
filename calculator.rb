@@ -65,7 +65,10 @@ y = nil
 n = nil
 b = "nothing"
 result = "The answer is: "
+clear = %x{clear}
 if input == "exit"
+	print clear
+	exit
 elsif input == "add" || input == "subtract" || input == "power"
 	until x.is_a?(Fixnum) do
 		puts
@@ -78,15 +81,15 @@ elsif input == "add" || input == "subtract" || input == "power"
 		y = Integer(gets) rescue nil
 	end
 	if input == "add"
-		puts
+		puts clear
 		print result
 		puts add(x,y)
 	elsif input == "subtract"
-		puts
+		puts clear
 		print result
 		puts subtract(x,y)
 	else input == "power"
-		puts
+		puts clear
 		print result
 		puts power(x,y)
 	end
@@ -110,11 +113,11 @@ elsif input == "multiply" || input == "sum"
 		end
 	end
 	if input == "multiply"
-		puts
+		puts clear
 		print result
 		puts multiply(numbers)
 	else input == "sum"
-		puts
+		puts clear
 		print result
 		puts sum(numbers)
 	end
@@ -124,7 +127,7 @@ else input == "factorial"
 		print "Please enter a number: "
 		n = Integer(gets) rescue nil
 	end
-	puts
+	puts clear
 	print result
 	puts factorial(n)
 end
