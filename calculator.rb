@@ -53,7 +53,7 @@ inputs = ["add", "subtract", "sum", "multiply", "divide", "power", "factorial", 
 input = nil
 while input != "exit"
 input = "nothing"
-until inputs.include?("#{input}") == true do
+until inputs.include?(input) == true do
 	puts
 	puts "Options are: add, subtract, sum, multiply, divide, power, factorial, exit"
 	print "What function would you like to do? "
