@@ -67,7 +67,7 @@ class Game
 			puts "Please enter your guess: #{$input}"
 			puts "****"
 			puts "Congratulations #{$name}! You guessed right, the number was #{$answer}."
-			break
+			exit
 		end
 	end
 
@@ -94,7 +94,7 @@ class Game
 			print %x{clear}
 		end
 		if input == "exit"
-			break
+			exit
 		end
 		if input == "play"
 			gameplay
@@ -121,7 +121,7 @@ class Player
 			end
 			if $input == "exit"
 				print %x{clear}
-				break
+				exit
 			end
 			if $input.length != 4
 				puts "Your guess must be four numbers long! Please try again."

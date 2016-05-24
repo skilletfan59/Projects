@@ -220,7 +220,7 @@ class Dragon
         puts 'He wakes up suddenly!'
       end
       puts @name + ' is starving!  In desperation, he ate YOU!'
-      break
+      exit
     end
 
     if @stuffInIntestine >= 10
@@ -242,7 +242,7 @@ class Dragon
       puts "#{@name} just passed out from exhaustion!"
       puts "#{@name} will not recover from this neglect and PETA came to save them."
       puts "You are not mature enough to own and take care of a pet, so now you don't have one!"
-      break
+      exit
     end
 
     if sleepy?
@@ -295,7 +295,7 @@ while input != "exit"
   end
   if input == "exit"
     print %x{clear}
-    break
+    exit
   elsif input == "feed"
     pet.feed
   elsif input == "walk"
