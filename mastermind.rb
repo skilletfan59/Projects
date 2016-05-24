@@ -1,11 +1,4 @@
 class Mastermind
-	private
-	
-	def initialize
-		$answer = [rand(10), rand(10), rand(10), rand(10)].join
-	end
-
-	public
 
 	def playing_game
 		$player = Player.new
@@ -37,6 +30,10 @@ class Game
 
 	private
 
+	def initialize
+		$answer = [rand(10), rand(10), rand(10), rand(10)].join
+	end
+
 	def won?
 		$answer == $input
 	end
@@ -53,12 +50,14 @@ class Game
 			input.each.with_index do |x, i|
 				if answer[i] == x
 					output.push "*"
-					answer = answer.join.sub!(x, " ").split(//)	
+					answer = answer.join.sub!(x, " ").split(//)
+					input = input.join.sub!(x, "*").split(//)	
 				end
 			end
 			input.each do |x|
 				if answer.include?(x)
 					output.push "?"
+					answer = answer.join.sub!(x, " ").split(//)
 				end
 			end
 			puts output.sort.join
