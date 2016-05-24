@@ -68,7 +68,7 @@ result = "The answer is: "
 clear = %x{clear}
 if input == "exit"
 	print clear
-	exit
+	break
 elsif input == "add" || input == "subtract" || input == "power"
 	until x.is_a?(Fixnum) do
 		puts
@@ -88,7 +88,7 @@ elsif input == "add" || input == "subtract" || input == "power"
 		puts clear
 		print result
 		puts subtract(x,y)
-	else input == "power"
+	elsif input == "power"
 		puts clear
 		print result
 		puts power(x,y)
