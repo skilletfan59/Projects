@@ -41,7 +41,7 @@
 		end
 		i
 	end
-puts
+print %x{clear}
 puts "This program is a calculator emulator. Your options for
 functions are: ADD - to add two numbers, SUBTRACT - to subtract
 the first number from the second, SUM - to add multiple numbers,
@@ -69,17 +69,47 @@ clear = %x{clear}
 if input == "exit"
 	print clear
 	exit
-elsif input == "add" || input == "subtract" || input == "power"
-	until x.is_a?(Fixnum) do
+elsif input == "add" || input == "subtract" || input == "power" || input == "divide"
+	until x.is_a?(Fixnum)
 		puts
 		print "Please enter the first number: "
-		x = Integer(gets) rescue nil
+		x = gets.chomp
+		if
+			begin
+				Float(x)
+				x = x.to_f
+				break
+			rescue ArgumentError
+			end
+		else
+			puts "That's not a number!"
+		end
 	end
-	until y.is_a?(Fixnum) do
+	#until x.is_a?(Fixnum) do
+		#puts
+		#print "Please enter the first number: "
+		#x = Integer(gets) rescue nil
+	#end
+	until y.is_a?(Fixnum)
 		puts
 		print "Please enter the second number: "
-		y = Integer(gets) rescue nil
+		y = gets.chomp
+		if
+			begin
+				Float(y)
+				y = y.to_f
+				break
+			rescue ArgumentError
+			end
+		else
+			puts "That's not a number!"
+		end
 	end
+	#until y.is_a?(Fixnum) do
+		#puts
+		#print "Please enter the second number: "
+		#y = Integer(gets) rescue nil
+	#end
 	if input == "add"
 		puts clear
 		print result
@@ -92,6 +122,10 @@ elsif input == "add" || input == "subtract" || input == "power"
 		puts clear
 		print result
 		puts power(x,y)
+	elsif input == "divide"
+		puts clear
+		print result
+		puts divide(x,y)
 	end
 elsif input == "multiply" || input == "sum"
 	puts
@@ -104,8 +138,8 @@ elsif input == "multiply" || input == "sum"
 		if b == "done"
 		elsif
 			begin 
-				Integer(b)
-			numbers.push Integer(b)
+				Float(b)
+			numbers.push Float(b)
 			rescue ArgumentError
 			end	
 		else
