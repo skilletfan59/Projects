@@ -26,7 +26,8 @@ class Functions
 	def divide (x,y)
 		z = x.to_f / y.to_f
 		if z.to_s == "Infinity"
-			puts "You cannot divide numbers by 0!"
+			puts "Undefined
+You cannot divide numbers by 0!"
 		else
 			z
 		end
@@ -155,9 +156,13 @@ FACTORIAL - all the numbers between that one and 1 multiplied"
 					print result
 					z = @c.divide(x,y)
 					if z != z.to_i
-						@c.remainder(x,y)
-						if $r != nil
-							puts z.to_s + " or #{$d} with a remainder of #{$r}"
+						if x == x.to_i && y == y.to_i
+							@c.remainder(x,y)
+							if $r != nil
+								puts z.to_s + "  -or-  #{$d} with a remainder of #{$r}"
+							end
+						else
+							puts z
 						end
 					else
 						if z == z.to_i
