@@ -42,12 +42,11 @@ You cannot divide numbers by 0!"
 	end
 	def factorial(n)
 		i = 1
-		array = [n]
+		i *= n
 		while n > 1
 			n -= 1
-			array.push n
+			i *= n
 		end
-		array.each {|a| i *= a}
 		if i == 0
 			i = 1
 		end
