@@ -195,7 +195,7 @@ class Factorial
 		@i *= $n
 		while $n > 1
 			$n -= 1
-			@i *= n
+			@i *= $n
 		end
 		if @i == 0
 			@i = 1
