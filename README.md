@@ -1,2 +1,3 @@
 # testfirst
-first ruby project that is required by the site
+Just a group of programs that I made or expanded on an assignment
+All made by Tom Lamers
