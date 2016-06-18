@@ -1,20 +1,19 @@
 CLEAR = %x{clear}
 class Calculator
-	def explain
+	def initialize
 		print CLEAR
-		puts " This program is a calculator emulator. Your options for
+		@message = puts " This program is a calculator emulator. Your options for
  functions are: ADD - to add two numbers, SUBTRACT - to subtract
  the first number from the second, SUM - to add multiple numbers,
  MULTIPLY - to multiply any amount of numbers together, DIVIDE - 
  to divide the first number by the second number, POWER - to 
  multiply the first number by the power of the second number,
  FACTORIAL - all the numbers between that one and 1 multiplied"
+ 	end
+ 	def run
+		Operations.new.do
 	end
-	def run
-		input = Input.new.reset
-		input = Input.new.main
-		Operations.new.do(input)
-	end
+	END {print CLEAR}
 end
 class Input
 	def main
@@ -103,55 +102,17 @@ class Input
 		end
 		n
 	end
-	def reset
-		nil
-	end
 end
 class Operations
-	def do(input)
-		case input
-		when "add", "a", "+"
-			x = Input.new.getx
-			y = Input.new.gety
-			z = Add.new.add(x,y)
-			result(z)
-			Calculator.new.run
-		when "subtract", "sub", "-"
-			x = Input.new.getx
-			y = Input.new.gety
-			z = Subtract.new.minus(x,y)
-			result(z)
-			Calculator.new.run
-		when "power", "p", "^"
-			x = Input.new.getx
-			y = Input.new.gety
-			z = Power.new.power(x,y)
-			result(z)
-			Calculator.new.run
-		when "divide", "d", "/"
-			x = Input.new.getx
-			y = Input.new.gety
-			g = Divide.new
-			g.divide(x,y)
-			g.result(x,y)
-			Calculator.new.run
-		when "multiply", "m", "*"
-			numbers = Input.new.multin
-			z = Multiply.new.times(numbers)
-			result(z)
-			Calculator.new.run
-		when "sum", "s", "++"
-			numbers = Input.new.multin
-			z = Sum.new.sum(numbers)
-			result(z)
-			Calculator.new.run
-		when "factorial", "f", "!"
-			n = Input.new.singin
-			z = Factorial.new.fact(n)
-			result(z)
-			Calculator.new.run
-		when " ", "exit"
-			print CLEAR
+	def do
+		function = {"add" => Add.new, "a" => Add.new, "+" => Add.new, "subtract" => Subtract.new, "sub" => Subtract.new, "-" => Subtract.new, "divide" => Divide.new, "d" => Divide.new, "/" => Divide.new, "power" => Power.new, "p" => Power.new, "^" => Power.new, "sum" => Sum.new, "s" => Sum.new, "++" => Sum.new, "multiply" => Multiply.new, "m" => Multiply.new, "*" => Multiply.new, "factorial" => Factorial.new, "f" => Factorial.new, "!" => Factorial.new}
+		input =
+		until input == " " || input == "exit"
+			input = Input.new.main
+			unless input == " " || input == "exit"
+			op = function[input]
+			op.do_op
+			end
 		end
 	end
 	def result(z)
@@ -164,53 +125,65 @@ class Operations
 	end
 end
 class Add < Operations
-	def add(x,y)
-		x + y
+	def do_op
+		x = Input.new.getx
+		y = Input.new.gety
+		z = x + y
+		result(z)
 	end
 end
 class Subtract < Operations
-	def minus(x,y)
-		x - y
+	def do_op
+		x = Input.new.getx
+		y = Input.new.gety
+		z = x - y
+		result(z)
 	end
 end
 class Sum < Operations
-	def sum(numbers)
+	def do_op
+		numbers = Input.new.multin
 		n = 0
 		if numbers == []
 			0
 		else
 		numbers.each {|a| n += a}
 		end
-		n
+		result(n)
 	end
 end
 class Multiply < Operations
-	def times(numbers)
+	def do_op
+		numbers = Input.new.multin
 		n = 1
 		if numbers == []
-			0
+			n = 0
 		else
 		numbers.each {|a| n *= a}
 		end
-		n
+		result(n)
 	end
 end
 class Divide < Operations
-	def divide(x,y)
-		@z = x.to_f / y.to_f
+	def do_op
+		@x = Input.new.getx
+		@y = Input.new.gety
+		@z = @x.to_f / @y.to_f
 		if @z.to_s == "Infinity"
 			@z = "Undefined
  You cannot divide numbers by 0!"
 		end
-		@d = x.to_i / y.to_i
-		@r = x.to_i % y.to_i
-	rescue ZeroDivisionError
+		if @y != 0
+		@d = @x.to_i / @y.to_i
+		@r = @x.to_i % @y.to_i
+		end
+		result
 	end
-	def result(x,y)
-		print CLEAR	
+	def result
+		print CLEAR
 		print "The answer is: "
 		if @z != @z.to_i
-			if x == x.to_i && y == y.to_i
+			if @x == @x.to_i && @y == @y.to_i
 				if @r != nil
 					puts @z.to_s + "  -or-  #{@d} with a remainder of #{@r}"
 				else
@@ -228,12 +201,16 @@ class Divide < Operations
 	end
 end
 class Power < Operations
-	def power(x,y)
-		x ** y
+	def do_op
+		x = Input.new.getx
+		y = Input.new.gety
+		z = x ** y
+		result(z)
 	end
 end
 class Factorial < Operations
-	def fact(n)
+	def do_op
+		n = Input.new.singin
 		i = 1
 		i *= n
 		while n > 1
@@ -243,9 +220,8 @@ class Factorial < Operations
 		if i == 0
 			i = 1
 		end
-		i
+		result(i)
 	end
 end
 g = Calculator.new
-g.explain
 g.run
