@@ -22,9 +22,11 @@ class Dungeon
 		show_current_description
 	end
 
+	protected
+
 	def show_current_description
 		puts find_room_in_dungeon(@player.location).full_description
-		@player.location == :exit ? exit : get_direction
+		get_direction if @player.location != :exit
 	end
 
 	def show_failed_description
@@ -67,8 +69,9 @@ class Dungeon
 			puts "There is no door that way!" unless options.include?(entry)
 			puts
 		end
-		exit if entry == :monkey
-		go(entry)
+		entry == :monkey ? @player.location = :exit : go(entry)
+		#exit if entry == :monkey
+		#go(entry)
 	end
 
 	def go(direction)
@@ -94,11 +97,14 @@ class Dungeon
 
 	end
 
+	public
+
 	class Player
-		attr_accessor :name, :location
+		attr_accessor :name, :location, :inventory
 
 		def initialize(name)
 			@name = name
+			@inventory = [] #for adding items like keys later
 		end
 	end
 
@@ -130,4 +136,3 @@ class Input
 		name
 	end
 end
-
