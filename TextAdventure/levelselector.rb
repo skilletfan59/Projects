@@ -1,7 +1,18 @@
+#inputing all the "levels"
 require_relative "housemaze"
 require_relative "iqmaze"
 require_relative "mom"
+
+#Used for user inputs
 class Input
+	#allows the user to input their name
+	def name
+		print CLEAR + "What is your name? "
+		name = gets.chomp.downcase.split(" ").each {|word| word.capitalize!}.join(" ")
+		print CLEAR
+		name
+	end
+	#allows user to input desired level
 	def begin_input
 		input = nil
 		until input != nil
@@ -15,6 +26,7 @@ class Input
 		end
 		input
 	end
+	#allows user to input 'yes' or 'no' answer
 	def end_input
 		input = nil
 		until input != nil
@@ -28,31 +40,38 @@ class Input
 		input
 	end
 end
+
+#controls which level to input to the game
 class Game_selector
+	#creates a hash of what to do with what is chosen
 	def initialize
 		@choices = {:medium => Medium.new, :hard => Hard.new, :mom => Mom.new}
 	end
-	def run
+	#starts the game with a welcome message and asks for the level selection then generates that game
+	def run(name)
 		print %x{clear}
-		puts "Welcome to my Text Adventure App! There are currently 2 levels to\nchoose from, Medium or Hard.  The Medium option features a nice\nhouse to walk through with easy questions. The Hard option features\nan old castle dungeon setting with hard IQ questions."
+		puts "Hi #{name}! Welcome to my Text Adventure App! There are currently 2 levels to\nchoose from, Medium or Hard.  The Medium option features a nice\nhouse to walk through with easy questions. The Hard option features\nan old castle dungeon setting with hard IQ questions."
 		print "Which level would you like to choose?  "
 		choice = Input.new.begin_input
 		level = @choices[choice]
-		level.generate
-		new_game
+		level.generate(name)
+		new_game(name)
 	end
-	def new_game
-		print "Would you like to play again?  "
+	#run at the end of the game to ask if you want to play again
+	def new_game(name)
+		print "Would you like to play again #{name}?  "
 		choice = Input.new.end_input
 		case choice
-		when "yes" then run
-		when "no" then leave
+		when "yes" then run(name)
+		when "no" then leave(name)
 		end
 	end
-	def leave
-		puts "Thanks for playing, Come back soon!"
+	#thanks player for playing and exits
+	def leave(name)
+		puts "Thanks for playing #{name}, Come back soon!"
 		exit
 	end
 end
+name = Input.new.name
 game = Game_selector.new
-game.run
+game.run(name)

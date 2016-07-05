@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Dungeon::Room - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-full_description">#full_description</a>
+    
+    <li ><a href="#method-i-short_description">#short_description</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Dungeon::Room">
+  <h1 id="class-Dungeon::Room" class="class">
+    class Dungeon::Room
+  </h1>
+
+  <section class="description">
+    
+<p>the room object that stores all the attributes required in making a room</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-connections" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">connections</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-description" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">description</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-item" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">item</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-puzzle_name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">puzzle_name</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-reference" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">reference</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-room_name" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">room_name</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(reference, room_name, description, connections, puzzle_name, item)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>takes all the parameters supplied and sets them to the room object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">room_name</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">connections</span>, <span class="ruby-identifier">puzzle_name</span>, <span class="ruby-identifier">item</span>)
+        <span class="ruby-ivar">@reference</span> = <span class="ruby-identifier">reference</span>
+        <span class="ruby-ivar">@room_name</span> = <span class="ruby-identifier">room_name</span>
+        <span class="ruby-ivar">@description</span> = <span class="ruby-identifier">description</span>
+        <span class="ruby-ivar">@connections</span> = <span class="ruby-identifier">connections</span>
+        <span class="ruby-ivar">@puzzle_name</span> = <span class="ruby-identifier">puzzle_name</span>
+        <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">item</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-full_description" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_description</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns the room name and description</p>
+          
+          
+
+          
+          <div class="method-source-code" id="full_description-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_description</span>
+        <span class="ruby-node">&quot;#{@room_name}.\n\nYou are in #{@description}\n\n&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-short_description" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">short_description</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns only the room name for failed puzzles</p>
+          
+          
+
+          
+          <div class="method-source-code" id="short_description-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 163</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">short_description</span>
+        <span class="ruby-node">&quot;You are still in the #{@room_name}\n\n&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

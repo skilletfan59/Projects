@@ -1,7 +1,6 @@
 require_relative "dungeon"
 class Medium
-	def generate
-		name = Input.new.name
+	def generate(name)
 		my_house = Dungeon.new(name)
 		#All rooms in the house
 		my_house.add_room(:garage, "Garage", "the place where you store your nice new cars.\nIt's time to explore the rest of your new house!", {:north => :laundry}, nil)
@@ -19,9 +18,9 @@ class Medium
 		my_house.add_room(:hallway, "Upstairs Hallway", "a long hallway connecting all the rooms upstairs together.", {:south => :stairs, :west => :master, :north => :gbath, :east => :guest}, :decathlon)
 		my_house.add_room(:weight, "Weight Room", "a room with a weight bench and a bunch of weights.\nThis would make an excellent workout room.", {:west => :mancave, :north => :deck, :east => :bowling}, :ear)
 		my_house.add_room(:deck, "Deck", "an open deck enclosed by screens to keep out the bugs.\nIn the middle is a nice fire pit surrounded by benches for relaxing fires.", {:west => :exit, :south => :weight}, :theif)
-		my_house.add_room(:bathroom, "Master Bathroom", "a huge bathroom with a luxury spa tub, his and\nhers sinks, open concept shower and a nice skylight for natural light.", {:north => :master}, :baton)
+		my_house.add_room(:bathroom, "Master Bathroom", "a huge bathroom with a luxury spa tub, his and\nhers sinks, open concept shower and a nice skylight for natural light.", {:north => :master}, :baton, "key")
 		my_house.add_room(:master, "Master Bedroom", "a gorgeous room with big bay windows, a luxurious\ncal king bed and plenty of space to put dressers and rockers for reading.", {:west => :closet, :south => :bathroom, :east => :hallway}, :artery)
-		my_house.add_room(:mancave, "Mancave", "a room with a big tv, big couches, and a movie theater\nquality surround sound system. This would be a great mancave.", {:east => :weight}, :dart)
+		my_house.add_room(:mancave, "Mancave", "a room with a big tv, big couches, and a movie theater\nquality surround sound system. This would be a great mancave.", {:east => :weight}, :dart, "key")
 		my_house.add_room(:closet, "Walk-in Closet", "a huge walk-in closet with lots of space for all\nyour different outfits, shoes, and purses.", {:east => :master}, :large)
 		my_house.add_room(:exit, "Exit", "the backyard. You have successfully navigated your\nbrand new house! Congratulations!", {}, :dice)
 		#All puzzles in the house
