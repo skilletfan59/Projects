@@ -64,6 +64,7 @@ class Dungeon
 	#pull the connections of your current room and displays them as the options, then allows you to input which way you want to go
 	def get_direction
 		options = find_room_in_dungeon(@player.location).connections.keys
+		#organizational wording for different number of options
 		if options.length > 2
 			shown = []
 			options.each {|d| shown << d.to_s if d != options.last}
@@ -73,10 +74,9 @@ class Dungeon
 		elsif options.length == 1
 			puts "You only see one door, and it is going #{options.first}."
 		end
-		shortcuts = []
-		options.each {|d| shortcuts << d.to_s[0].to_sym && shortcuts << d}
+		#gets the entry from the user
 		entry = nil
-		until shortcuts.include?(entry)
+		until options.include?(entry)
 			print "Where would you like to go? "
 			entry = case gets.chomp.downcase.to_sym
 			when :north, :n then :north
@@ -84,6 +84,7 @@ class Dungeon
 			when :east, :e then :east
 			when :west, :w then :west
 			when :monkey then :monkey
+			else nil
 			end
 			break if entry == :monkey
 			puts "There is no door that way!" unless options.include?(entry)
@@ -94,6 +95,7 @@ class Dungeon
 
 	#pulls the puzzle for the room you wish to enter, if the correct answer is supplied you enter that room, otherwise you stay in the previous room
 	def go(direction)
+		#if trying to go to exit, checks if you have a key or not
 		if find_room_in_direction(direction) == :exit
 			if @player.inventory[0] == "key"
 				puts "You use your key to unlock the door..."
@@ -102,22 +104,26 @@ class Dungeon
 				show_failed_description
 			end
 		end
+		#getting the puzzle for the room trying to enter and displays it
 		unless find_room_in_direction(direction) == :exit && @player.inventory[0] != "key"
 			puzzle = find_room_in_dungeon(find_room_in_direction(direction)).puzzle_name
 			if puzzle != nil && @player.history.include?(find_room_in_direction(direction)) == false
 				print problem = @puzzles[puzzle].keys[0]
 				print "  "
 				answer = gets.chomp.downcase
+				#correct answer
 				if answer.include?(@puzzles[puzzle][problem].to_s)
 					puts CLEAR + "Correct!\n\n"
 					print "You go #{direction} into the "
 					@player.location = find_room_in_direction(direction)
 					@player.history << @player.location
 					show_current_description
+				#incorrect answer
 				else
 					puts CLEAR + "You failed to solve the problem and have been denied access!"
 					show_failed_description
 				end
+			#no puzzle for that room
 			else
 				print CLEAR + "You go #{direction} into "
 				@player.location = find_room_in_direction(direction)
