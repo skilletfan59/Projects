@@ -7,7 +7,8 @@ class Dungeon
 	def initialize(name)
 		@player = Player.new(name)
 		@rooms = []
-		@puzzles = {}
+		@puzzles = []
+		#@puzzles = {}
 	end
 
 	#allows you to add a new room to the map
@@ -17,7 +18,8 @@ class Dungeon
 
 	#allows you to add a new puzzle to the map
 	def add_puzzle(puzzle_name, problem, answer)
-		@puzzles[puzzle_name] = {problem => answer}
+		@puzzles << Puzzle.new(puzzle_name, problem, answer)
+		#@puzzles[puzzle_name] = {problem => answer}
 	end
 
 	#defines where you start on the map by setting the player location to that
@@ -44,6 +46,11 @@ class Dungeon
 	def show_failed_description
 		puts find_room_in_dungeon(@player.location).short_description
 		get_direction
+	end
+
+	#finds the puzzle object for the room you are trying to enter
+	def find_puzzle(puzzle_name)
+		@puzzles.detect {|puzzle| puzzle.puzzle_name == puzzle_name}
 	end
 
 	#finds which room you are currently in and returns that room object
@@ -100,7 +107,7 @@ class Dungeon
 			if @player.inventory[0] == "key"
 				puts "You use your key to unlock the door..."
 			else
-				puts "You need a key to enter that room!"
+				puts "That door is locked! You need a key to enter."
 				show_failed_description
 			end
 		end
@@ -108,11 +115,11 @@ class Dungeon
 		unless find_room_in_direction(direction) == :exit && @player.inventory[0] != "key"
 			puzzle = find_room_in_dungeon(find_room_in_direction(direction)).puzzle_name
 			if puzzle != nil && @player.history.include?(find_room_in_direction(direction)) == false
-				print problem = @puzzles[puzzle].keys[0]
+				print problem = find_puzzle(puzzle).problem
 				print "  "
 				answer = gets.chomp.downcase
 				#correct answer
-				if answer.include?(@puzzles[puzzle][problem].to_s)
+				if answer.include?(find_puzzle(puzzle).answer.to_s)
 					puts CLEAR + "Correct!\n\n"
 					print "You go #{direction} into the "
 					@player.location = find_room_in_direction(direction)
@@ -149,6 +156,7 @@ class Dungeon
 	#the room object that stores all the attributes required in making a room
 	class Room
 		attr_accessor :reference, :room_name, :description, :connections, :puzzle_name, :item
+		@@room_count = 0
 
 		#takes all the parameters supplied and sets them to the room object
 		def initialize(reference, room_name, description, connections, puzzle_name, item)
@@ -158,6 +166,7 @@ class Dungeon
 			@connections = connections
 			@puzzle_name = puzzle_name
 			@item = item
+			@@room_count += 1
 		end
 
 		#returns the room name and description
@@ -168,6 +177,25 @@ class Dungeon
 		#returns only the room name for failed puzzles
 		def short_description
 			"You are still in the #{@room_name}\n\n"
+		end
+
+		#returns current number of rooms made
+		def self.get_room_count
+			@@room_count
+		end
+	end
+
+	#the puzzle object that stores all the attributes required in making the puzzle object
+	class Puzzle
+		attr_accessor :puzzle_name, :problem, :answer
+		@@puzzle_count = 0
+
+		#takes all the parameters supplied and sets them to the puzzle object
+		def initialize(puzzle_name, problem, answer)
+			@puzzle_name = puzzle_name
+			@problem = problem
+			@answer = answer
+			@@puzzle_count += 1
 		end
 	end
 end

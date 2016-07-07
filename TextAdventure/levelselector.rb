@@ -69,6 +69,8 @@ class Game_selector
 	#thanks player for playing and exits
 	def leave(name)
 		puts "Thanks for playing #{name}, Come back soon!"
+		sleep(5)
+		print CLEAR
 		exit
 	end
 end
