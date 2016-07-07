@@ -43,6 +43,9 @@ class Hard
 		my_dungeon.add_puzzle(:brick, "How many bricks does it take to complete a building made of brick?", "one")
 		my_dungeon.add_puzzle(:three, "Jenna wrote all the numbers from 300 to 400 on a piece of paper.\nHow many times did she write the digit 3?", 120)
 		my_dungeon.add_puzzle(:race, "You are running a race. What position are you after you pass the\nsecond place runner?", "second")
+		#Displays how many of each was created
+		puts "This level has #{Dungeon::Room.get_room_count} rooms and #{Dungeon::Puzzle.get_puzzle_count} puzzles, Good Luck!"
+		sleep(3)
 		#Start the maze
 		my_dungeon.start(:entrance)
 	end

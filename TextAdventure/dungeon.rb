@@ -8,7 +8,6 @@ class Dungeon
 		@player = Player.new(name)
 		@rooms = []
 		@puzzles = []
-		#@puzzles = {}
 	end
 
 	#allows you to add a new room to the map
@@ -19,7 +18,6 @@ class Dungeon
 	#allows you to add a new puzzle to the map
 	def add_puzzle(puzzle_name, problem, answer)
 		@puzzles << Puzzle.new(puzzle_name, problem, answer)
-		#@puzzles[puzzle_name] = {problem => answer}
 	end
 
 	#defines where you start on the map by setting the player location to that
@@ -196,6 +194,11 @@ class Dungeon
 			@problem = problem
 			@answer = answer
 			@@puzzle_count += 1
+		end
+
+		#returns current number of puzzles made
+		def self.get_puzzle_count
+			@@puzzle_count
 		end
 	end
 end

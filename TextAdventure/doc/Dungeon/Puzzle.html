@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>class Dungeon::Player - RDoc Documentation</title>
+<title>class Dungeon::Puzzle - RDoc Documentation</title>
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-get_puzzle_count">::get_puzzle_count</a>
+    
     <li ><a href="#method-c-new">::new</a>
     
   </ul>
@@ -78,14 +80,15 @@
   </div>
 </nav>
 
-<main role="main" aria-labelledby="class-Dungeon::Player">
-  <h1 id="class-Dungeon::Player" class="class">
-    class Dungeon::Player
+<main role="main" aria-labelledby="class-Dungeon::Puzzle">
+  <h1 id="class-Dungeon::Puzzle" class="class">
+    class Dungeon::Puzzle
   </h1>
 
   <section class="description">
     
-<p>the player object that stores the name, location, and current items</p>
+<p>the puzzle object that stores all the attributes required in making the
+puzzle object</p>
 
   </section>
 
@@ -106,9 +109,9 @@
       </header>
 
       
-      <div id="attribute-i-history" class="method-detail">
+      <div id="attribute-i-answer" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">history</span><span
+          <span class="method-name">answer</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -119,9 +122,9 @@
         </div>
       </div>
       
-      <div id="attribute-i-inventory" class="method-detail">
+      <div id="attribute-i-problem" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">inventory</span><span
+          <span class="method-name">problem</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -132,22 +135,9 @@
         </div>
       </div>
       
-      <div id="attribute-i-location" class="method-detail">
+      <div id="attribute-i-puzzle_name" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">location</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-name" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">name</span><span
+          <span class="method-name">puzzle_name</span><span
             class="attribute-access-type">[RW]</span>
         </div>
 
@@ -168,11 +158,11 @@
        </header>
 
     
-      <div id="method-c-new" class="method-detail ">
+      <div id="method-c-get_puzzle_count" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(name)</span>
+          <span class="method-name">get_puzzle_count</span><span
+            class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -181,18 +171,51 @@
 
         <div class="method-description">
           
-          <p>takes the name supplied and sets that players name as that and creates and
-item stash and initializes the room history</p>
+          <p>returns current number of puzzles made</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_puzzle_count-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_puzzle_count</span>
+        <span class="ruby-identifier">@@puzzle_count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(puzzle_name, problem, answer)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>takes all the parameters supplied and sets them to the puzzle object</p>
           
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 147</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>)
-        <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
-        <span class="ruby-ivar">@inventory</span> = []
-        <span class="ruby-ivar">@history</span> = []
+            <pre><span class="ruby-comment"># File dungeon.rb, line 192</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">puzzle_name</span>, <span class="ruby-identifier">problem</span>, <span class="ruby-identifier">answer</span>)
+        <span class="ruby-ivar">@puzzle_name</span> = <span class="ruby-identifier">puzzle_name</span>
+        <span class="ruby-ivar">@problem</span> = <span class="ruby-identifier">problem</span>
+        <span class="ruby-ivar">@answer</span> = <span class="ruby-identifier">answer</span>
+        <span class="ruby-identifier">@@puzzle_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

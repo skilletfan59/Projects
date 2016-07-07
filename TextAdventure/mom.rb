@@ -39,6 +39,9 @@ class Mom
 		my_house.add_puzzle(:snack, "What is dad's mandatory after-workout snack?", "ice cream")
 		my_house.add_puzzle(:puppy, "Who uses the deck the most?", "toby")
 		my_house.add_puzzle(:gaming, "What gaming system do I have and play?", "xbox")
+		#Displays how many of each was created
+		puts "This level has #{Dungeon::Room.get_room_count} rooms and #{Dungeon::Puzzle.get_puzzle_count} puzzles, Good Luck!"
+		sleep(3)
 		#Start the maze
 		my_house.start(:garage)
 	end

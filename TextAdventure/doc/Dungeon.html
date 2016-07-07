@@ -78,6 +78,8 @@
     
     <li ><a href="#method-i-find_item_in_room">#find_item_in_room</a>
     
+    <li ><a href="#method-i-find_puzzle">#find_puzzle</a>
+    
     <li ><a href="#method-i-find_room_in_direction">#find_room_in_direction</a>
     
     <li ><a href="#method-i-find_room_in_dungeon">#find_room_in_dungeon</a>
@@ -172,7 +174,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>)
         <span class="ruby-ivar">@player</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>)
         <span class="ruby-ivar">@rooms</span> = []
-        <span class="ruby-ivar">@puzzles</span> = {}
+        <span class="ruby-ivar">@puzzles</span> = []
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -213,7 +215,7 @@
           <div class="method-source-code" id="add_puzzle-source">
             <pre><span class="ruby-comment"># File dungeon.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_puzzle</span>(<span class="ruby-identifier">puzzle_name</span>, <span class="ruby-identifier">problem</span>, <span class="ruby-identifier">answer</span>)
-        <span class="ruby-ivar">@puzzles</span>[<span class="ruby-identifier">puzzle_name</span>] = {<span class="ruby-identifier">problem</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">answer</span>}
+        <span class="ruby-ivar">@puzzles</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Puzzle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">puzzle_name</span>, <span class="ruby-identifier">problem</span>, <span class="ruby-identifier">answer</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -321,9 +323,42 @@
 
           
           <div class="method-source-code" id="find_item_in_room-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 60</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_item_in_room</span>
         <span class="ruby-identifier">find_room_in_dungeon</span>(<span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">item</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-find_puzzle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_puzzle</span><span
+            class="method-args">(puzzle_name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>finds the puzzle object for the room you are trying to enter</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_puzzle-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">find_puzzle</span>(<span class="ruby-identifier">puzzle_name</span>)
+        <span class="ruby-ivar">@puzzles</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">puzzle</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puzzle</span>.<span class="ruby-identifier">puzzle_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">puzzle_name</span>}
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -354,7 +389,7 @@
 
           
           <div class="method-source-code" id="find_room_in_direction-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 55</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>)
         <span class="ruby-identifier">find_room_in_dungeon</span>(<span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">connections</span>[<span class="ruby-identifier">direction</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -387,7 +422,7 @@
 
           
           <div class="method-source-code" id="find_room_in_dungeon-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 50</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_room_in_dungeon</span>(<span class="ruby-identifier">reference</span>)
         <span class="ruby-ivar">@rooms</span>.<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">room</span><span class="ruby-operator">|</span> <span class="ruby-identifier">room</span>.<span class="ruby-identifier">reference</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">reference</span>}
 <span class="ruby-keyword">end</span></pre>
@@ -421,9 +456,10 @@ then allows you to input which way you want to go</p>
 
           
           <div class="method-source-code" id="get_direction-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 65</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_direction</span>
         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">find_room_in_dungeon</span>(<span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span>).<span class="ruby-identifier">connections</span>.<span class="ruby-identifier">keys</span>
+        <span class="ruby-comment">#organizational wording for different number of options</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
                 <span class="ruby-identifier">shown</span> = []
                 <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">shown</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">d</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">last</span>}
@@ -433,10 +469,9 @@ then allows you to input which way you want to go</p>
         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;You only see one door, and it is going #{options.first}.&quot;</span>
         <span class="ruby-keyword">end</span>
-        <span class="ruby-identifier">shortcuts</span> = []
-        <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span> <span class="ruby-identifier">shortcuts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">shortcuts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">d</span>}
+        <span class="ruby-comment">#gets the entry from the user</span>
         <span class="ruby-identifier">entry</span> = <span class="ruby-keyword">nil</span>
-        <span class="ruby-keyword">until</span> <span class="ruby-identifier">shortcuts</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>)
+        <span class="ruby-keyword">until</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>)
                 <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Where would you like to go? &quot;</span>
                 <span class="ruby-identifier">entry</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">to_sym</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-value">:north</span>, <span class="ruby-value">:n</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:north</span>
@@ -444,6 +479,7 @@ then allows you to input which way you want to go</p>
                 <span class="ruby-keyword">when</span> <span class="ruby-value">:east</span>, <span class="ruby-value">:e</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:east</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-value">:west</span>, <span class="ruby-value">:w</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:west</span>
                 <span class="ruby-keyword">when</span> <span class="ruby-value">:monkey</span> <span class="ruby-keyword">then</span> <span class="ruby-value">:monkey</span>
+                <span class="ruby-keyword">else</span> <span class="ruby-keyword">nil</span>
                 <span class="ruby-keyword">end</span>
                 <span class="ruby-keyword">break</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">entry</span> <span class="ruby-operator">==</span> <span class="ruby-value">:monkey</span>
                 <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;There is no door that way!&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>)
@@ -481,32 +517,37 @@ supplied you enter that room, otherwise you stay in the previous room</p>
 
           
           <div class="method-source-code" id="go-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 96</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">go</span>(<span class="ruby-identifier">direction</span>)
+        <span class="ruby-comment">#if trying to go to exit, checks if you have a key or not</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>) <span class="ruby-operator">==</span> <span class="ruby-value">:exit</span>
                 <span class="ruby-keyword">if</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">inventory</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;key&quot;</span>
                         <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;You use your key to unlock the door...&quot;</span>
                 <span class="ruby-keyword">else</span>
-                        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;You need a key to enter that room!&quot;</span>
+                        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;That door is locked! You need a key to enter.&quot;</span>
                         <span class="ruby-identifier">show_failed_description</span>
                 <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#getting the puzzle for the room trying to enter and displays it</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>) <span class="ruby-operator">==</span> <span class="ruby-value">:exit</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">inventory</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;key&quot;</span>
                 <span class="ruby-identifier">puzzle</span> = <span class="ruby-identifier">find_room_in_dungeon</span>(<span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>)).<span class="ruby-identifier">puzzle_name</span>
                 <span class="ruby-keyword">if</span> <span class="ruby-identifier">puzzle</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">history</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>)) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
-                        <span class="ruby-identifier">print</span> <span class="ruby-identifier">problem</span> = <span class="ruby-ivar">@puzzles</span>[<span class="ruby-identifier">puzzle</span>].<span class="ruby-identifier">keys</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-identifier">print</span> <span class="ruby-identifier">problem</span> = <span class="ruby-identifier">find_puzzle</span>(<span class="ruby-identifier">puzzle</span>).<span class="ruby-identifier">problem</span>
                         <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;  &quot;</span>
                         <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">downcase</span>
-                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@puzzles</span>[<span class="ruby-identifier">puzzle</span>][<span class="ruby-identifier">problem</span>].<span class="ruby-identifier">to_s</span>)
+                        <span class="ruby-comment">#correct answer</span>
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">find_puzzle</span>(<span class="ruby-identifier">puzzle</span>).<span class="ruby-identifier">answer</span>.<span class="ruby-identifier">to_s</span>)
                                 <span class="ruby-identifier">puts</span> <span class="ruby-constant">CLEAR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Correct!\n\n&quot;</span>
                                 <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;You go #{direction} into the &quot;</span>
                                 <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span> = <span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>)
                                 <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">history</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span>
                                 <span class="ruby-identifier">show_current_description</span>
+                        <span class="ruby-comment">#incorrect answer</span>
                         <span class="ruby-keyword">else</span>
                                 <span class="ruby-identifier">puts</span> <span class="ruby-constant">CLEAR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;You failed to solve the problem and have been denied access!&quot;</span>
                                 <span class="ruby-identifier">show_failed_description</span>
                         <span class="ruby-keyword">end</span>
+                <span class="ruby-comment">#no puzzle for that room</span>
                 <span class="ruby-keyword">else</span>
                         <span class="ruby-identifier">print</span> <span class="ruby-constant">CLEAR</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot;You go #{direction} into &quot;</span>
                         <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">location</span> = <span class="ruby-identifier">find_room_in_direction</span>(<span class="ruby-identifier">direction</span>)

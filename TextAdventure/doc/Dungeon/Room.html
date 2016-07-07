@@ -70,6 +70,8 @@
 
   <ul class="link-list" role="directory">
     
+    <li ><a href="#method-c-get_room_count">::get_room_count</a>
+    
     <li ><a href="#method-c-new">::new</a>
     
     <li ><a href="#method-i-full_description">#full_description</a>
@@ -198,6 +200,39 @@
        </header>
 
     
+      <div id="method-c-get_room_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_room_count</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns current number of rooms made</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_room_count-source">
+            <pre><span class="ruby-comment"># File dungeon.rb, line 181</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_room_count</span>
+        <span class="ruby-identifier">@@room_count</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
@@ -217,7 +252,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 148</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">room_name</span>, <span class="ruby-identifier">description</span>, <span class="ruby-identifier">connections</span>, <span class="ruby-identifier">puzzle_name</span>, <span class="ruby-identifier">item</span>)
         <span class="ruby-ivar">@reference</span> = <span class="ruby-identifier">reference</span>
         <span class="ruby-ivar">@room_name</span> = <span class="ruby-identifier">room_name</span>
@@ -225,6 +260,7 @@
         <span class="ruby-ivar">@connections</span> = <span class="ruby-identifier">connections</span>
         <span class="ruby-ivar">@puzzle_name</span> = <span class="ruby-identifier">puzzle_name</span>
         <span class="ruby-ivar">@item</span> = <span class="ruby-identifier">item</span>
+        <span class="ruby-identifier">@@room_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -263,7 +299,7 @@
 
           
           <div class="method-source-code" id="full_description-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 158</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 171</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">full_description</span>
         <span class="ruby-node">&quot;#{@room_name}.\n\nYou are in #{@description}\n\n&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -296,7 +332,7 @@
 
           
           <div class="method-source-code" id="short_description-source">
-            <pre><span class="ruby-comment"># File dungeon.rb, line 163</span>
+            <pre><span class="ruby-comment"># File dungeon.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">short_description</span>
         <span class="ruby-node">&quot;You are still in the #{@room_name}\n\n&quot;</span>
 <span class="ruby-keyword">end</span></pre>

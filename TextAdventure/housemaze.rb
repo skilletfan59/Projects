@@ -43,6 +43,9 @@ class Medium
 		my_house.add_puzzle(:sqroot, "What is the square root of 169?", 13)		
 		my_house.add_puzzle(:dice, "How many dots are there in total on a pair of dice?", 42)
 		my_house.add_puzzle(:dart, "What color is the bullseye on a standard dart board?", "red")
+		#Displays how many of each was created
+		puts "This level has #{Dungeon::Room.get_room_count} rooms and #{Dungeon::Puzzle.get_puzzle_count} puzzles, Good Luck!"
+		sleep(3)
 		#Start the maze
 		my_house.start(:garage)
 	end
