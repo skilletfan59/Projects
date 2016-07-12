@@ -1,9 +1,9 @@
 class Mastermind
 
 	def playing_game
-		$player = Player.new
-		$player.get_name
-		puts "Welcome to Mastermind #{$name}! If you are unsure how to play, enter 'help'."
+		player = Player.new
+		name = player.get_name
+		puts "Welcome to Mastermind #{name}! If you are unsure how to play, enter 'help'."
 		puts "Otherwise enter 'play' if you already know how to play."
 		inputs = ["help", "play"]
 		print "What would you like to do? "
@@ -15,12 +15,12 @@ class Mastermind
 			print %x{clear}
 		end
 		if input == "play"
-			$new_game = Game.new
-			$new_game.gameplay
+			new_game = Game.new(name)
+			new_game.gameplay
 		end
 		if input == "help"
-			$new_game = Game.new
-			$new_game.get_help
+			new_game = Game.new(name)
+			new_game.get_help
 		end
 
 	end
@@ -30,23 +30,25 @@ class Game
 
 	private
 
-	def initialize
-		$answer = [rand(10), rand(10), rand(10), rand(10)].join
+	def initialize(name)
+		@name = name
+		@answer = [rand(10), rand(10), rand(10), rand(10)].join
 	end
 
 	def won?
-		$answer == $input
+		@answer == @input
 	end
 
 	public
 
 	def gameplay
 		print %x{clear}
-		while not won?
+		@turn = 0
+		while not won? || @turn >= 12
 			output = []
-			$player.get_input
-			input = $input.split(//)
-			answer = $answer.split(//)
+			@input = get_input
+			input = @input.split(//)
+			answer = @answer.split(//)
 			input.each.with_index do |x, i|
 				if answer[i] == x
 					output.push "*"
@@ -61,14 +63,53 @@ class Game
 				end
 			end
 			puts output.sort.join
+			@turn += 1
 		end
 		if won?
 			print %x{clear}
-			puts "Please enter your guess: #{$input}"
+			puts "Please enter your guess: #{@input}"
 			puts "****"
-			puts "Congratulations #{$name}! You guessed right, the number was #{$answer}."
+			puts "Congratulations #{@name}! You guessed right, the number was #{@answer}."
 			exit
+		else
+			puts %x{clear} + "You were unable to guess the correct answer in the allotted number of tries!\nGAME OVER!!!!! Better luck next time."
 		end
+	end
+
+	def get_input
+		input = "nothing"
+		until input.length == 4
+			puts "You have #{12 - @turn} guesses left..." unless @turn == 11
+			puts "This is your last guess..." if @turn == 11
+			print "Please enter your guess: "
+			input = gets.chomp.delete(" ")
+			if input.length == 4
+				if input == "help"
+					get_help
+				elsif input == "exit"
+					print %x{clear}
+					exit
+				else
+					begin
+						Integer(input)
+					rescue ArgumentError
+						puts "\nThat is not a number! Please try again\n\n"
+						input = "nothing"
+					end
+				end
+			else
+				puts "\nYour guess must be four numbers long! Please try again.\n\n"
+				if input < "1000"
+					begin
+						Integer(input)
+					rescue ArgumentError
+						puts "\nThat is not a number! Please try again.\n\n"
+						input = "nothing"
+					end	
+				end
+			end
+		end
+		input
 	end
 
 	def get_help
@@ -107,35 +148,9 @@ class Player
 
 	def get_name
 		print "What is your name? "
-		$name = gets.chomp.downcase.split(" ").each {|word| word.capitalize!}.join(" ")
+		name = gets.chomp.downcase.split(" ").each {|word| word.capitalize!}.join(" ")
 		print %x{clear}
-	end
-
-	def get_input
-		$input = "nothing"
-		until $input.length == 4
-			print "Please enter your guess: "
-			$input = gets.chomp.delete(" ")
-			if $input == "help"
-				$new_game.get_help
-			end
-			if $input == "exit"
-				print %x{clear}
-				exit
-			end
-			if $input.length != 4
-				puts "Your guess must be four numbers long! Please try again."
-			end
-			if $input < "1000"
-			elsif
-				begin
-					Integer($input)
-				rescue ArgumentError
-					puts "That is not a number! Please try again."
-					$input = "done"
-				end	
-			end
-		end
+		name
 	end
 
 end

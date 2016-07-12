@@ -2,6 +2,8 @@ require_relative "dungeon"
 class Hard
 	def generate(name)
 		my_dungeon = Dungeon.new(name)
+		Dungeon::Room.reset_room_count
+		Dungeon::Puzzle.reset_puzzle_count
 		#All rooms in the castle
 		my_dungeon.add_room(:entrance, "entrance", "the gateway to a castle. It is a very old and mysterious\ncastle, and you are not sure what you will encounter inside.", {:north => :courthall}, nil)
 		my_dungeon.add_room(:jail, "Jail", "a room where rusting spikes line the walls and ceiling\nof this chamber. The dusty floor shows no sign that the walls move\nover it, but you can see the skeleton of some humanoid impaled on\nsome wall spikes nearby.", {:south => :study, :west => :library, :north => :pettingzoo}, :doors)
@@ -36,7 +38,7 @@ class Hard
 		my_dungeon.add_puzzle(:dictionary, "Which word in the dictionary is spelled incorrectly?", "incorrectly")
 		my_dungeon.add_puzzle(:doors, "You are in prison, and you have to pick which\ndoor you go through for your punishment.\nDoor one has ninja assassins.\nDoor two had lions who haven't eaten in 3 weeks.\nDoor three has a flaming inferno.\nWhich door is safest, one, two, or three?", "two")
 		my_dungeon.add_puzzle(:noon, "How many minutes is it before 12 noon, if 48 minutes ago it was twice\nas many minutes past 9 am?", 44)
-		my_dungeon.add_puzzle(:socks, "A man has 53 socks in his drawer: 21 identical blue, 15 identical\nblack and 17 identical red. The lights are fused and he is completely\nin the dark. How many socks mush he take out to make 100 percent\ncertain he has a pair of black socks", 40)
+		my_dungeon.add_puzzle(:socks, "A man has 53 socks in his drawer: 21 identical blue, 15 identical\nblack and 17 identical red. The lights are fused and he is completely\nin the dark. How many socks must he take out to make 100 percent\ncertain he has a pair of black socks", 40)
 		my_dungeon.add_puzzle(:noon2, "How many minutes it is before 12 noon if 9 minutes ago it was\ntwice as many minutes past 10 am?", 37)
 		my_dungeon.add_puzzle(:shape, "Which is the odd one out? pentagon, triangle, square, cube, hexagon, octagon", "cube")
 		my_dungeon.add_puzzle(:fire, "You are in a pitch black room and only have one match.\n There is a candle, an oil lamp, and a gas stove.\nWhich do you light first?", "match")

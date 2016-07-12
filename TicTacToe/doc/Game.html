@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Game - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-leave">#leave</a>
+    
+    <li ><a href="#method-i-new_game">#new_game</a>
+    
+    <li ><a href="#method-i-pick_entry">#pick_entry</a>
+    
+    <li ><a href="#method-i-play">#play</a>
+    
+    <li ><a href="#method-i-play_computer">#play_computer</a>
+    
+    <li ><a href="#method-i-win-3F">#win?</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Game">
+  <h1 id="class-Game" class="class">
+    class Game
+  </h1>
+
+  <section class="description">
+    
+<p>Creates a new game cycle</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>creates the winning combos, substitution hash, available choices, and
+creates two new players with names and creates a new game board</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+        <span class="ruby-ivar">@winning_combos</span> = [[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>], [<span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>], [<span class="ruby-value">7</span>, <span class="ruby-value">8</span>, <span class="ruby-value">9</span>], [<span class="ruby-value">1</span>, <span class="ruby-value">4</span>, <span class="ruby-value">7</span>], [<span class="ruby-value">2</span>, <span class="ruby-value">5</span>, <span class="ruby-value">8</span>], [<span class="ruby-value">3</span>, <span class="ruby-value">6</span>, <span class="ruby-value">9</span>], [<span class="ruby-value">1</span>, <span class="ruby-value">5</span>, <span class="ruby-value">9</span>], [<span class="ruby-value">3</span>, <span class="ruby-value">5</span>, <span class="ruby-value">7</span>]]
+        <span class="ruby-ivar">@translation</span> = {<span class="ruby-value">1</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">2</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>, <span class="ruby-value">3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span>, <span class="ruby-value">4</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">5</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>, <span class="ruby-value">6</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span>, <span class="ruby-value">7</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, <span class="ruby-value">8</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>, <span class="ruby-value">9</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9</span>}
+        <span class="ruby-ivar">@choices</span> = [<span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-string">&quot;2&quot;</span>, <span class="ruby-string">&quot;3&quot;</span>, <span class="ruby-string">&quot;4&quot;</span>, <span class="ruby-string">&quot;5&quot;</span>, <span class="ruby-string">&quot;6&quot;</span>, <span class="ruby-string">&quot;7&quot;</span>, <span class="ruby-string">&quot;8&quot;</span>, <span class="ruby-string">&quot;9&quot;</span>]
+        <span class="ruby-identifier">puts</span> <span class="ruby-constant">C</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Who is playing?\n(If you want to play against the computer enter &#39;ai&#39; as Player 2 Name)&quot;</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Player 1 (X): &quot;</span>
+        <span class="ruby-ivar">@player_one</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Input</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;X&quot;</span>)
+        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Player 2 (O): &quot;</span>
+        <span class="ruby-ivar">@player_two</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Input</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">name</span>, <span class="ruby-string">&quot;O&quot;</span>)
+        <span class="ruby-identifier">print</span> <span class="ruby-constant">C</span>
+        <span class="ruby-ivar">@board</span> = <span class="ruby-constant">Board</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@player_two</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ai&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">play_computer</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">play</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-leave" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">leave</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>thanks player for playing and exits</p>
+          
+          
+
+          
+          <div class="method-source-code" id="leave-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 252</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">leave</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nThanks for playing #{@player_one.name} and #{@player_two.name}, Come back soon!&quot;</span>
+        <span class="ruby-identifier">sleep</span>(<span class="ruby-value">3</span>)
+        <span class="ruby-identifier">print</span> <span class="ruby-constant">C</span>
+        <span class="ruby-identifier">exit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-new_game" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_game</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>run at the end of the game to ask if you want to play again</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new_game-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 242</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_game</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;Would you like to play again?  &quot;</span>
+        <span class="ruby-identifier">choice</span> = <span class="ruby-constant">Input</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">yes_or_no</span>
+        <span class="ruby-keyword">case</span> <span class="ruby-identifier">choice</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;yes&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Game</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">play</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;no&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">leave</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-pick_entry" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pick_entry</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>get&#39;s input for computer</p>
+          
+          
+
+          
+          <div class="method-source-code" id="pick_entry-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pick_entry</span>
+        <span class="ruby-identifier">ptwoentry</span> = <span class="ruby-ivar">@player_two</span>.<span class="ruby-identifier">entries</span>
+        <span class="ruby-identifier">poneentry</span> = <span class="ruby-ivar">@player_one</span>.<span class="ruby-identifier">entries</span>
+        <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;&quot;</span>
+        <span class="ruby-identifier">winning_combos</span> = <span class="ruby-ivar">@winning_combos</span>
+        <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-comment">#start in the middle</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;5&quot;</span>)
+                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;5&quot;</span>
+                <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#check if computer has a winning move</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">turn_over</span>
+                <span class="ruby-identifier">winning_combos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">count</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ptwoentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">n</span>)} <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+                                <span class="ruby-identifier">x</span> = <span class="ruby-identifier">array</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ptwoentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">a</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>}
+                                <span class="ruby-identifier">entry</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">x</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span>)
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>[<span class="ruby-value">0</span>])
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">true</span>
+                <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>[<span class="ruby-value">1</span>])
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>[<span class="ruby-value">1</span>]
+                        <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">true</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;&quot;</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#check if opponent has a winning move</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">turn_over</span>
+                <span class="ruby-identifier">winning_combos</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+                        <span class="ruby-keyword">if</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">count</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">n</span>)} <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+                                <span class="ruby-identifier">x</span> = <span class="ruby-identifier">array</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">a</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>}
+                                <span class="ruby-identifier">entry</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">x</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_s</span>)
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>[<span class="ruby-value">0</span>])
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>[<span class="ruby-value">0</span>]
+                        <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">true</span>
+                <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>[<span class="ruby-value">1</span>])
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>[<span class="ruby-value">1</span>]
+                        <span class="ruby-identifier">turn_over</span> = <span class="ruby-keyword">true</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;&quot;</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#if computer is in the middle and opponent is on opposite corners play on sides and other blockers</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">turn_over</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>[<span class="ruby-value">5</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;X&quot;</span>
+                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">1</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">9</span>)) <span class="ruby-operator">||</span> (<span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">3</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">7</span>))
+                                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;4&quot;</span>)
+                                        <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;4&quot;</span>
+                                <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;6&quot;</span>)
+                                        <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;6&quot;</span>
+                                <span class="ruby-keyword">end</span>
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">4</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">9</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;7&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;7&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">4</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">3</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;1&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">6</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">7</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;9&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;9&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">6</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">1</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;3&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">9</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;3&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">2</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">7</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;1&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">8</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">1</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;7&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;7&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">8</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">3</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;9&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;9&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">4</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">2</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;1&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;1&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">4</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">8</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;7&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;7&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">6</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">2</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;3&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;3&quot;</span>)
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">6</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">poneentry</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">8</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;9&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;9&quot;</span>)
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-comment">#otherwise opponent is in the middle and computer starts in either corner</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;1&quot;</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;1&quot;</span>
+                        <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">&quot;7&quot;</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-string">&quot;7&quot;</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">entry</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-play" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">play</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>runs the game for two players</p>
+          
+          
+
+          
+          <div class="method-source-code" id="play-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">play</span>
+        <span class="ruby-identifier">player_one</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-identifier">current_player</span> = <span class="ruby-ivar">@player_two</span>
+        <span class="ruby-comment">#runs the loop until the board is full or win</span>
+        <span class="ruby-keyword">while</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">win?</span>(<span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-constant">C</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Reference Key:\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">key</span>
+                <span class="ruby-identifier">current_board</span> = <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_two</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_four</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n\n&quot;</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Current Board:\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">current_board</span>
+                <span class="ruby-comment">#changes players</span>
+                <span class="ruby-identifier">player_one</span> = <span class="ruby-identifier">player_one</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+                <span class="ruby-comment">#assigns current player object to current_player</span>
+                <span class="ruby-identifier">current_player</span> = <span class="ruby-identifier">player_one</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@player_one</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@player_two</span>
+                <span class="ruby-comment">#gets input of your move</span>
+                <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{current_player.name} where would you like to place your marker? &quot;</span>
+                <span class="ruby-identifier">entry</span> = <span class="ruby-keyword">nil</span>
+                <span class="ruby-keyword">until</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>)
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+                        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;\nThat is not a valid option! Try again: &quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-comment">#delete entry from available choices and put it in that player&#39;s entry array</span>
+                <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">entry</span>)
+                <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">to_i</span>
+                <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">entry</span>
+                <span class="ruby-comment">#gets reference number for which place to replace in the current game board</span>
+                <span class="ruby-identifier">reference</span> = <span class="ruby-ivar">@translation</span>[<span class="ruby-identifier">entry</span>]
+                <span class="ruby-keyword">case</span> <span class="ruby-identifier">entry</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">when</span> <span class="ruby-value">7</span>, <span class="ruby-value">8</span>, <span class="ruby-value">9</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#displays ending game board</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-constant">C</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Current Board\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_two</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_four</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span>
+        <span class="ruby-comment">#displays message depending on the outcome</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">win?</span>(<span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span>) <span class="ruby-operator">?</span> <span class="ruby-node">&quot;\nCongratulations #{current_player.name}, you have won the game!\n\n&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;\nLooks like it&#39;s a cat&#39;s game and nobody wins!\n\n&quot;</span>
+        <span class="ruby-identifier">new_game</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-play_computer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">play_computer</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>runs the game for one player and one computer</p>
+          
+          
+
+          
+          <div class="method-source-code" id="play_computer-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">play_computer</span>
+        <span class="ruby-identifier">player_one</span> = <span class="ruby-keyword">false</span>
+        <span class="ruby-identifier">current_player</span> = <span class="ruby-ivar">@player_one</span>
+        <span class="ruby-comment">#runs the loop until the board is full or win</span>
+        <span class="ruby-keyword">while</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">win?</span>(<span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-constant">C</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Reference Key:\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">key</span>
+                <span class="ruby-identifier">current_board</span> = <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_two</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_four</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n\n&quot;</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Current Board:\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">current_board</span>
+                <span class="ruby-comment">#changes players</span>
+                <span class="ruby-identifier">player_one</span> = <span class="ruby-identifier">player_one</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">false</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+                <span class="ruby-comment">#assigns current player object to current_player</span>
+                <span class="ruby-identifier">current_player</span> = <span class="ruby-identifier">player_one</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@player_one</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@player_two</span>
+                <span class="ruby-comment">#gets input of computer&#39;s or your move</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_player</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@player_two</span>
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">pick_entry</span>
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{current_player.name} where would you like to place your marker? &quot;</span>
+                        <span class="ruby-identifier">entry</span> = <span class="ruby-keyword">nil</span>
+                        <span class="ruby-keyword">until</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>)
+                                <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+                                <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;\nThat is not a valid option! Try again: &quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">entry</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span>
+                        <span class="ruby-keyword">end</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-comment">#delete entry from available choices and put it in that player&#39;s entry array</span>
+                <span class="ruby-ivar">@choices</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">entry</span>)
+                <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">to_i</span>
+                <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">entry</span>
+                <span class="ruby-comment">#gets reference number for which place to replace in the current game board</span>
+                <span class="ruby-identifier">reference</span> = <span class="ruby-ivar">@translation</span>[<span class="ruby-identifier">entry</span>]
+                <span class="ruby-keyword">case</span> <span class="ruby-identifier">entry</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">when</span> <span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">when</span> <span class="ruby-value">7</span>, <span class="ruby-value">8</span>, <span class="ruby-value">9</span>
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">delete_at</span>(<span class="ruby-identifier">reference</span>)
+                        <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">insert</span>(<span class="ruby-identifier">reference</span>, <span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">piece</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#displays ending game board</span>
+        <span class="ruby-identifier">print</span> <span class="ruby-constant">C</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Current Board\n\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_one</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_two</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_three</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_four</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@board</span>.<span class="ruby-identifier">b_five</span>.<span class="ruby-identifier">join</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;\n&quot;</span>
+        <span class="ruby-comment">#displays message depending on the outcome</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">win?</span>(<span class="ruby-identifier">current_player</span>.<span class="ruby-identifier">entries</span>) <span class="ruby-operator">?</span> <span class="ruby-node">&quot;\nCongratulations #{current_player.name}, you have won the game!\n\n&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;\nLooks like it&#39;s a cat&#39;s game and nobody wins!\n\n&quot;</span>
+        <span class="ruby-identifier">new_game</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-win-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">win?</span><span
+            class="method-args">(player_entries)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>returns boolean if checking if the player has won or not</p>
+          
+          
+
+          
+          <div class="method-source-code" id="win-3F-source">
+            <pre><span class="ruby-comment"># File ticTacToe.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">win?</span>(<span class="ruby-identifier">player_entries</span>)
+        <span class="ruby-ivar">@winning_combos</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">array</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">array</span>.<span class="ruby-identifier">all?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">player_entries</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">n</span>)}
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.2.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

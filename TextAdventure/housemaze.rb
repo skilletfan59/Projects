@@ -2,6 +2,8 @@ require_relative "dungeon"
 class Medium
 	def generate(name)
 		my_house = Dungeon.new(name)
+		Dungeon::Room.reset_room_count
+		Dungeon::Puzzle.reset_puzzle_count
 		#All rooms in the house
 		my_house.add_room(:garage, "Garage", "the place where you store your nice new cars.\nIt's time to explore the rest of your new house!", {:north => :laundry}, nil)
 		my_house.add_room(:laundry, "Laundry Room", "a room with a washing machine and a dryer.\nIt must be where you will wash your clothes.", {:south => :garage, :west => :dining, :north => :kitchen}, :tall)

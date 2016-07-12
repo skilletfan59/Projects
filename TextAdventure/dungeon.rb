@@ -100,9 +100,12 @@ class Dungeon
 
 	#pulls the puzzle for the room you wish to enter, if the correct answer is supplied you enter that room, otherwise you stay in the previous room
 	def go(direction)
+		next_room = find_room_in_direction(direction)
+		has_key	= @player.inventory[0] == "key"
+
 		#if trying to go to exit, checks if you have a key or not
-		if find_room_in_direction(direction) == :exit
-			if @player.inventory[0] == "key"
+		if next_room == :exit
+			if has_key
 				puts "You use your key to unlock the door..."
 			else
 				puts "That door is locked! You need a key to enter."
@@ -110,8 +113,8 @@ class Dungeon
 			end
 		end
 		#getting the puzzle for the room trying to enter and displays it
-		unless find_room_in_direction(direction) == :exit && @player.inventory[0] != "key"
-			puzzle = find_room_in_dungeon(find_room_in_direction(direction)).puzzle_name
+		unless next_room == :exit && !has_key
+			puzzle = find_room_in_dungeon(next_room).puzzle_name
 			if puzzle != nil && @player.history.include?(find_room_in_direction(direction)) == false
 				print problem = find_puzzle(puzzle).problem
 				print "  "
@@ -181,6 +184,11 @@ class Dungeon
 		def self.get_room_count
 			@@room_count
 		end
+
+		#resets the room count number
+		def self.reset_room_count
+			@@room_count = 0
+		end
 	end
 
 	#the puzzle object that stores all the attributes required in making the puzzle object
@@ -199,6 +207,11 @@ class Dungeon
 		#returns current number of puzzles made
 		def self.get_puzzle_count
 			@@puzzle_count
+		end
+
+		#resets puzzle count number
+		def self.reset_puzzle_count
+			@@puzzle_count = 0
 		end
 	end
 end
