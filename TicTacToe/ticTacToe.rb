@@ -1,4 +1,3 @@
-#need to edit the computer pick_entry for first play of game pick random corner, then if player picks center pick opposite corner, if player picks opposite corner pick another corner then center
 C = %x{clear}
 #Creates and maintains the tic tac toe board
 class Board
@@ -197,7 +196,7 @@ class Game
 				entry = ""
 			end
 		end
-		#if the computer is playing first, start in a corner and if the opponent takes opposite corner take another corner then middle
+		#if the computer is playing first, start in a corner and if the opponent takes opposite corner take another corner then middle, if the opponent takes middle second then take opposite corner
 		unless turn_over
 			if ptwoentry.length == poneentry.length && poneentry.length < 2
 				if ptwoentry.length == 0 and poneentry.length == 0
@@ -213,7 +212,19 @@ class Game
 					entry = @choices.include?("1") ? "1" : "9"
 					turn_over = true
 				elsif poneentry.include?(7) && ptwoentry.include?(3)
-					entry = @choices.include?("1") ? "7" : "9"
+					entry = @choices.include?("1") ? "1" : "9"
+					turn_over = true
+				elsif poneentry.include?(5) && ptwoentry.include?(1)
+					entry = "9" if @choices.include?("9")
+					turn_over = true
+				elsif poneentry.include?(5) && ptwoentry.include?(3)
+					entry = "7" if @choices.include?("7")
+					turn_over = true
+				elsif poneentry.include?(5) && ptwoentry.include?(7)
+					entry = "3" if @choices.include?("3")
+					turn_over = true
+				elsif poneentry.include?(5) && ptwoentry.include?(9)
+					entry = "1" if @choices.include?("1")
 					turn_over = true
 				elsif @choices.include?("5")
 					entry = "5"
