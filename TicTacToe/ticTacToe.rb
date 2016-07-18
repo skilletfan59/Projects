@@ -117,7 +117,7 @@ class Game
 			end
 			#delete entry from available choices and put it in that player's entry array
 			@choices.delete(entry)
-			entry = entry.to_i
+			puts entry = entry.to_i
 			current_player.entries << entry
 			#gets reference number for which place to replace in the current game board
 			reference = @translation[entry]
@@ -148,14 +148,15 @@ class Game
 
 	#get's input for computer
 	def pick_entry
-		ptwoentry = @player_two.entries
-		poneentry = @player_one.entries
+		puts ptwoentry = @player_two.entries
+		puts poneentry = @player_one.entries
+		puts combos = @choices
 		entry = ""
 		winning_combos = @winning_combos
 		turn_over = false
 		#start in the middle unless playing first
 		unless ptwoentry.length == poneentry.length
-			if @choices.include?("5")
+			if combos.include?("5")
 				entry = "5"
 				turn_over = true
 			end
@@ -165,15 +166,15 @@ class Game
 			winning_combos.each do |array|
 				if array.count {|n| ptwoentry.include?(n)} == 2
 					x = array.select {|a| ptwoentry.include?(a) == false}
-					entry << x[0].to_s if @choices.include?(x[0].to_s)
+					entry << x[0].to_s if combos.include?(x[0].to_s)
 				end
 			end
-			if @choices.include?(entry[0])
+			if combos.include?(entry[0])
 				entry = entry[0]
 				turn_over = true
-			elsif @choices.include?(entry[1])
-				entry = entry[1]
-				turn_over = true
+			#elsif combos.include?(entry[1])
+			#	entry = entry[1]
+			#	turn_over = true
 			else
 				entry = ""
 			end
@@ -183,15 +184,15 @@ class Game
 			winning_combos.each do |array|
 				if array.count {|n| poneentry.include?(n)} == 2
 					x = array.select {|a| poneentry.include?(a) == false}
-					entry << x[0].to_s if @choices.include?(x[0].to_s)
+					entry << x[0].to_s if combos.include?(x[0].to_s)
 				end
 			end
-			if @choices.include?(entry[0])
+			if combos.include?(entry[0])
 				entry = entry[0]
 				turn_over = true
-			elsif @choices.include?(entry[1])
-				entry = entry[1]
-				turn_over = true
+			#elsif combos.include?(entry[1])
+			#	entry = entry[1]
+			#	turn_over = true
 			else
 				entry = ""
 			end
@@ -203,30 +204,30 @@ class Game
 					entry = [1, 3, 7, 9].sample.to_s
 					turn_over = true
 				elsif poneentry.include?(1) && ptwoentry.include?(9)
-					entry = @choices.include?("7") ? "7" : "3"
+					entry = combos.include?("7") ? "7" : "3"
 					turn_over = true
 				elsif poneentry.include?(9) && ptwoentry.include?(1)
-					entry = @choices.include?("7") ? "7" : "3"
+					entry = combos.include?("7") ? "7" : "3"
 					turn_over = true
 				elsif poneentry.include?(3) && ptwoentry.include?(7)
-					entry = @choices.include?("1") ? "1" : "9"
+					entry = combos.include?("1") ? "1" : "9"
 					turn_over = true
 				elsif poneentry.include?(7) && ptwoentry.include?(3)
-					entry = @choices.include?("1") ? "1" : "9"
+					entry = combos.include?("1") ? "1" : "9"
 					turn_over = true
 				elsif poneentry.include?(5) && ptwoentry.include?(1)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 					turn_over = true
 				elsif poneentry.include?(5) && ptwoentry.include?(3)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 					turn_over = true
 				elsif poneentry.include?(5) && ptwoentry.include?(7)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 					turn_over = true
 				elsif poneentry.include?(5) && ptwoentry.include?(9)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 					turn_over = true
-				elsif @choices.include?("5")
+				elsif combos.include?("5")
 					entry = "5"
 					turn_over = true
 				else
@@ -234,81 +235,80 @@ class Game
 				end
 			#when computer is first and already made 2 moves, make the game winning setup move for the fork if available
 			elsif ptwoentry.length == poneentry.length && poneentry.length == 2
-				if @choices.include?("5")
+				if combos.include?("5")
 					entry = "5"
 					turn_over = true
 				elsif poneentry.include?(2) && poneentry.include?(7)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 					turn_over = true
 				elsif poneentry.include?(2) && poneentry.include?(9)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 					turn_over = true
 				elsif poneentry.include?(4) && poneentry.include?(9)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 					turn_over = true
 				elsif poneentry.include?(4) && poneentry.include?(3)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 					turn_over = true
 				elsif poneentry.include?(6) && poneentry.include?(7)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 					turn_over = true
 				elsif poneentry.include?(6) && poneentry.include?(1)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 					turn_over = true
 				elsif poneentry.include?(8) && poneentry.include?(1)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 					turn_over = true
 				elsif poneentry.include?(8) && poneentry.include?(3)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 					turn_over = true
 				end
 			#when the computer plays first and there's only one space left
-			elsif ptwoentry.length == poneentry.length && poneentry.length == 4
-				entry = @choices[0]
+			elsif ptwoentry.length == poneentry.length
+				entry = combos[0]
 			else
 				entry = ""
 			end
 		end
 		#if computer is in the middle and opponent is on opposite corners play on sides and other blockers
 		unless turn_over
-			if @board.b_three[5] != "X"
+			if ptwoentry.include?(5)
 				if (poneentry.include?(1) && poneentry.include?(9)) || (poneentry.include?(3) && poneentry.include?(7))
-					if @choices.include?("4")
+					if combos.include?("4")
 						entry = "4"
-					elsif @choices.include?("6")
+					elsif combos.include?("6")
 						entry = "6"
 					end
 				elsif poneentry.include?(4) && poneentry.include?(9)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 				elsif poneentry.include?(4) && poneentry.include?(3)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 				elsif poneentry.include?(6) && poneentry.include?(7)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 				elsif poneentry.include?(6) && poneentry.include?(1)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 				elsif poneentry.include?(2) && poneentry.include?(9)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 				elsif poneentry.include?(2) && poneentry.include?(7)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 				elsif poneentry.include?(8) && poneentry.include?(1)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 				elsif poneentry.include?(8) && poneentry.include?(3)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 				elsif poneentry.include?(4) && poneentry.include?(2)
-					entry = "1" if @choices.include?("1")
+					entry = "1" if combos.include?("1")
 				elsif poneentry.include?(4) && poneentry.include?(8)
-					entry = "7" if @choices.include?("7")
+					entry = "7" if combos.include?("7")
 				elsif poneentry.include?(6) && poneentry.include?(2)
-					entry = "3" if @choices.include?("3")
+					entry = "3" if combos.include?("3")
 				elsif poneentry.include?(6) && poneentry.include?(8)
-					entry = "9" if @choices.include?("9")
+					entry = "9" if combos.include?("9")
 				end
 			#otherwise opponent is in the middle and computer starts in either corner
 			else
-				if @choices.include?("1")
-					entry = "1"
-				elsif @choices.include?("7")
-					entry = "7"
+				entry = [1, 3, 7, 9].sample.to_s
+				until combos.include?(entry)
+					entry = [1, 3, 7, 9].sample.to_s
 				end
 			end
 		end
